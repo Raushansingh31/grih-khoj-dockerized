@@ -33,7 +33,7 @@ const LoanStatus = () => {
     setPrediction(null);
 
     try {
-      const response = await fetch('https://loan-sahayak.onrender.com/predict', {
+      const response = await fetch('https://loan-sahayak-docker.onrender.com/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

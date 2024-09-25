@@ -1,18 +1,18 @@
-version: '3.8'
+version: '3.8'    #docker compose version
 
-services:
-  mern-app:
+services:   #Defines the services (containers) that Docker Compose will run
+  mern-app: #name of service
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: .    #Sets the build context to the current directory (.). This is where Docker will look for the files required to build the image (such as Dockerfile, source code, etc.).
+      dockerfile: Dockerfile  #name of dockerfile
     container_name: mern-app
     environment:
       - MONGO=${MONGO}
       - JWT_SECRET=${JWT_SECRET}
-      - NODE_ENV=production
+      - NODE_ENV=production   #Hardcoded to production, this environment variable tells Node.js to run in production mode.
       - VITE_FIREBASE_API_KEY=${VITE_FIREBASE_API_KEY}
     ports:
       - '5000:5000'  # Backend
       - '3000:3000'  # Frontend
-    volumes:
-      - .:/app
+    volumes:  #Mounts directories from your host machine into the container. This ensures that any changes you make locally (in your code) are reflected inside the running container without rebuilding the image.
+      - .:/app  #Mounts the current directory (.) from the host machine into the /app directory inside the container. This allows your code to be accessible inside the container under the /app directory.
